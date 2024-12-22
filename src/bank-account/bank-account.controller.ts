@@ -1,10 +1,11 @@
-import { Controller, Get, Headers, Inject } from '@nestjs/common';
+import { Controller, Get, Headers, Inject, Post } from '@nestjs/common';
 
 import {
   BANK_ACCOUNT_SERVICE,
   BankAccountService,
 } from './bank-account.interface';
 import { BalanceResponseDto } from './dto/balance-response.dto';
+import { CreateVirtualCardResponseDto } from './dto/create-virtual-card-response.dto';
 
 @Controller('bank-account')
 export class BankAccountController {
@@ -18,5 +19,12 @@ export class BankAccountController {
     @Headers('email') email: string,
   ): Promise<BalanceResponseDto> {
     return { amount: await this.bankAccountService.getBalance(email) };
+  }
+
+  @Post('virtual-card')
+  async createVirtualCard(
+    @Headers('email') email: string,
+  ): Promise<CreateVirtualCardResponseDto> {
+    return await this.bankAccountService.createVirtualCard(email);
   }
 }

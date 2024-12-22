@@ -15,7 +15,12 @@ export interface AccountMembershipAvailableBalanceInfo {
 
 export interface AccountMembershipNode {
   id: string;
+  user: User;
   account: AccountMembershipAccount;
+}
+
+export interface User {
+  id: string;
 }
 
 export interface AccountMembershipsEdge {
@@ -34,6 +39,9 @@ export const AccountMembershipsByEmailQuery = gql`
       edges {
         node {
           id
+          user {
+            id
+          }
           account {
             balances {
               available {

@@ -1,6 +1,5 @@
 import { SwanAccountMembershipService } from './../account-membership/swan-account-membership.service';
 import { Injectable } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
 
 import Decimal from 'decimal.js';
 
