@@ -7,4 +7,8 @@ export interface BankAccountService {
   createVirtualCard: (
     email: string,
   ) => Promise<{ cardId: string; consentUrl: string }>;
+  viewCardNumbers: (
+    cardId: string,
+    email: string,
+  ) => Promise<{ consentUrl: string }>;
 }

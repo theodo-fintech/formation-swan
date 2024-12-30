@@ -1,4 +1,4 @@
-import { Controller, Get, Headers, Inject, Post } from '@nestjs/common';
+import { Controller, Get, Headers, Inject, Param, Post } from '@nestjs/common';
 
 import {
   BANK_ACCOUNT_SERVICE,
@@ -26,5 +26,13 @@ export class BankAccountController {
     @Headers('email') email: string,
   ): Promise<CreateVirtualCardResponseDto> {
     return await this.bankAccountService.createVirtualCard(email);
+  }
+
+  @Get('card-numbers/:id')
+  async viewCardSensitiveInformations(
+    @Headers('email') email: string,
+    @Param('id') cardId: string,
+  ): Promise<{ consentUrl: string }> {
+    return await this.bankAccountService.viewCardNumbers(cardId, email);
   }
 }

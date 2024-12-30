@@ -22,4 +22,15 @@ export class SwanBankAccountService implements BankAccountService {
     const card: Card = await this.swanCardService.createVirtualCard(email);
     return { cardId: card.id, consentUrl: card.statusInfo.consent.consentUrl };
   }
+
+  async viewCardNumbers(
+    cardId: string,
+    email: string,
+  ): Promise<{ consentUrl: string }> {
+    const successPayload = await this.swanCardService.viewCardNumbers({
+      email,
+      cardId,
+    });
+    return { consentUrl: successPayload.consent.consentUrl };
+  }
 }
